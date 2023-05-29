@@ -13,7 +13,7 @@ public class Endereco {
 
     private String logradouro;
     private String bairro;
-    private String cpf;
+    private String cep;
     private String cidade;
     private String uf;
     private String complemento;

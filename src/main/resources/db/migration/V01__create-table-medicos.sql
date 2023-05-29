@@ -1,4 +1,4 @@
-create table if not exists medico
+create table if not exists medicos
 (
     id bigint not null auto_increment primary key ,
     nome varchar(100) not null,
