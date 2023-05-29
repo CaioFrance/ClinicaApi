@@ -1,5 +1,22 @@
 package br.com.caiofrancelinoss.api.domain.models;
 
-public record Endereco(String logradouro, String bairro, String cpf, String cidade,
-                       String uf, String complemento, String numero) {
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Embeddable
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+public class Endereco {
+
+    private String logradouro;
+    private String bairro;
+    private String cpf;
+    private String cidade;
+    private String uf;
+    private String complemento;
+    private String numero;
+
 }
