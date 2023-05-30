@@ -1,0 +1,1 @@
+alter table pacientes add constraint cpf unique (cpf);
