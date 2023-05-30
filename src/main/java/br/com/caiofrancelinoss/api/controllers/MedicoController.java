@@ -37,7 +37,7 @@ public class MedicoController {
         @PageableDefault(sort = {"nome"}, direction = Sort.Direction.ASC)
         Pageable paginacao
     ) {
-        return repository.findAll(paginacao).map(DadosListagemMedicoDto::new);
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedicoDto::new);
     }
 
     @PutMapping
@@ -48,6 +48,18 @@ public class MedicoController {
 
             medico.atualizarInformacoes(dados);
         } catch (EntityNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Doctor not found");
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        try {
+            var medico = repository.getReferenceById(id);
+
+            medico.excluir();
+        } catch(EntityNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Doctor not found");
         }
     }
