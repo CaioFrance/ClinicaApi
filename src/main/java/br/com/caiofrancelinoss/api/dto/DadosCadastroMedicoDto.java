@@ -22,5 +22,5 @@ public record DadosCadastroMedicoDto(
     Especialidade especialidade,
     @NotNull
     @Valid
-    DadosEndereco endereco
+    DadosEnderecoDto endereco
 ) {}

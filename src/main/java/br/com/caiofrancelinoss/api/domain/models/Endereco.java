@@ -1,6 +1,6 @@
 package br.com.caiofrancelinoss.api.domain.models;
 
-import br.com.caiofrancelinoss.api.dto.DadosEndereco;
+import br.com.caiofrancelinoss.api.dto.DadosEnderecoDto;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +20,7 @@ public class Endereco {
     private String complemento;
     private String numero;
 
-    public Endereco(DadosEndereco dados) {
+    public Endereco(DadosEnderecoDto dados) {
         this.logradouro = dados.logradouro();
         this.bairro = dados.bairro();
         this.cep = dados.cep();
@@ -28,5 +28,35 @@ public class Endereco {
         this.uf = dados.uf();
         this.complemento = dados.complemento();
         this.numero = dados.numero();
+    }
+
+    public void atualizarInformacoes(DadosEnderecoDto dados) {
+        if (dados.logradouro() != null) {
+            this.logradouro = dados.logradouro();
+        }
+
+        if (dados.bairro() != null) {
+            this.bairro = dados.bairro();
+        }
+
+        if (dados.cep() != null) {
+            this.cep = dados.cep();
+        }
+
+        if (dados.cidade() != null) {
+            this.cidade = dados.cidade();
+        }
+
+        if (dados.uf() != null) {
+            this.uf = dados.uf();
+        }
+
+        if (dados.complemento() != null) {
+            this.complemento = dados.complemento();
+        }
+
+        if (dados.numero() != null) {
+            this.numero = dados.numero();
+        }
     }
 }
