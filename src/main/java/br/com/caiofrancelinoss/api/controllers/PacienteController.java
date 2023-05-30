@@ -37,7 +37,7 @@ public class PacienteController {
         @PageableDefault(sort = "nome", direction = Sort.Direction.ASC)
         Pageable paginacao
     ) {
-        return repository.findAll(paginacao).map(DadosListagemPacienteDto::new);
+        return repository.findByAtivoIsTrue(paginacao).map(DadosListagemPacienteDto::new);
     }
 
     @PutMapping
@@ -47,6 +47,18 @@ public class PacienteController {
             var paciente = repository.getReferenceById(dados.id());
 
             paciente.atualizarInformacoes(dados);
+        } catch(EntityNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        try {
+            var paciente = repository.getReferenceById(id);
+
+            paciente.excluir();
         } catch(EntityNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
