@@ -1,5 +1,6 @@
 package br.com.caiofrancelinoss.api.domain.models;
 
+import br.com.caiofrancelinoss.api.dto.DadosAtualizacaoPacienteDto;
 import br.com.caiofrancelinoss.api.dto.DadosCadastroPacienteDto;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,5 +29,19 @@ public class Paciente {
         this.telefone = dados.telefone();
         this.cpf = dados.cpf();
         this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoPacienteDto dados) {
+        if (dados.nome() != null && !dados.nome().equals("")) {
+            this.nome = dados.nome();
+        }
+
+        if (dados.telefone() != null && !dados.telefone().equals("")) {
+            this.telefone = dados.telefone();
+        }
+
+        if (dados.endereco() != null) {
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
     }
 }
