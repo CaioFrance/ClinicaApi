@@ -1,6 +1,6 @@
 package br.com.caiofrancelinoss.api.domain.models;
 
-import br.com.caiofrancelinoss.api.dto.DadosEnderecoDto;
+import br.com.caiofrancelinoss.api.app.dto.DadosEnderecoDto;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package br.com.caiofrancelinoss.api.dto;
+package br.com.caiofrancelinoss.api.app.dto;
 
 import br.com.caiofrancelinoss.api.domain.models.Endereco;
 import br.com.caiofrancelinoss.api.domain.models.Especialidade;

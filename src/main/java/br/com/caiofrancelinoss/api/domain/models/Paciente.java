@@ -1,7 +1,7 @@
 package br.com.caiofrancelinoss.api.domain.models;
 
-import br.com.caiofrancelinoss.api.dto.DadosAtualizacaoPacienteDto;
-import br.com.caiofrancelinoss.api.dto.DadosCadastroPacienteDto;
+import br.com.caiofrancelinoss.api.app.dto.DadosAtualizacaoPacienteDto;
+import br.com.caiofrancelinoss.api.app.dto.DadosCadastroPacienteDto;
 import jakarta.persistence.*;
 import lombok.*;
 

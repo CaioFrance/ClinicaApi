@@ -1,22 +1,19 @@
-package br.com.caiofrancelinoss.api.controllers;
+package br.com.caiofrancelinoss.api.app.controllers;
 
 import br.com.caiofrancelinoss.api.domain.models.Medico;
 import br.com.caiofrancelinoss.api.domain.repositories.MedicoRepository;
-import br.com.caiofrancelinoss.api.dto.DadosAtualizacaoMedicoDto;
-import br.com.caiofrancelinoss.api.dto.DadosCadastroMedicoDto;
-import br.com.caiofrancelinoss.api.dto.DadosDetalhamentoMedicoDto;
-import br.com.caiofrancelinoss.api.dto.DadosListagemMedicoDto;
-import jakarta.persistence.EntityNotFoundException;
+import br.com.caiofrancelinoss.api.app.dto.DadosAtualizacaoMedicoDto;
+import br.com.caiofrancelinoss.api.app.dto.DadosCadastroMedicoDto;
+import br.com.caiofrancelinoss.api.app.dto.DadosDetalhamentoMedicoDto;
+import br.com.caiofrancelinoss.api.app.dto.DadosListagemMedicoDto;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -52,31 +49,21 @@ public class MedicoController {
     @PutMapping
     @Transactional
     public ResponseEntity<?> atualizar(@RequestBody @Valid DadosAtualizacaoMedicoDto dados) {
-        try {
-            var medico = repository.getReferenceById(dados.id());
+        var medico = repository.getReferenceById(dados.id());
 
-            medico.atualizarInformacoes(dados);
+        medico.atualizarInformacoes(dados);
 
-            return ResponseEntity.ok(new DadosDetalhamentoMedicoDto(medico));
-        } catch (EntityNotFoundException ex) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Doctor not found");
-        }
-
+        return ResponseEntity.ok(new DadosDetalhamentoMedicoDto(medico));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<?> excluir(@PathVariable Long id) {
-        try {
-            var medico = repository.getReferenceById(id);
+        var medico = repository.getReferenceById(id);
 
-            medico.excluir();
+        medico.excluir();
 
-            return ResponseEntity.noContent().build();
-        } catch(EntityNotFoundException ex) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Doctor not found");
-        }
-
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
